@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Penjualan Kafe End-to-End - Danang Arya</title>
+    
+    <!-- Tipografi Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Memanggil style utama -->
+    <link rel="stylesheet" href="style.css"> 
+    
+    <style>
+        /* =========================================
+           CASE STUDY SPECIFIC STYLING
+        ========================================= */
+        body { background-color: var(--bg-main); }
+        
+        .back-btn { 
+            position: fixed; top: 30px; left: 30px; z-index: 100; 
+            background: #fff; border: 1px solid var(--border); padding: 10px 24px; 
+            border-radius: 50px; display: inline-flex; align-items: center; gap: 8px; 
+            font-weight: 600; font-size: 0.95rem; box-shadow: var(--shadow-sm); 
+            color: var(--text-dark); transition: var(--transition);
+        }
+        .back-btn:hover { background: var(--bg-slate); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        .case-header { padding: 140px 5% 60px; text-align: center; max-width: 900px; margin: 0 auto; }
+        .case-title { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; line-height: 1.15; letter-spacing: -1px; }
+        
+        .case-hero-img { 
+            width: 100%; max-width: 1000px; margin: 0 auto 80px; 
+            border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg); 
+            border: 1px solid var(--border); background: var(--bg-slate);
+        }
+        .case-hero-img img { width: 100%; display: block; object-fit: cover; }
+
+        .case-body { 
+            max-width: 760px; margin: 0 auto; padding: 0 5% 120px; 
+            font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); 
+        }
+        .case-body h2 { 
+            font-size: 1.8rem; margin: 60px 0 24px; padding-bottom: 12px; 
+            border-bottom: 1px solid var(--border); color: var(--text-dark); 
+            display: flex; align-items: center; gap: 12px;
+        }
+        .case-body h2 i { color: var(--accent); }
+        .case-body p { margin-bottom: 24px; }
+        
+        .case-body ul { padding-left: 0; margin-bottom: 32px; list-style: none; }
+        .case-body ul li { 
+            position: relative; padding-left: 28px; margin-bottom: 16px; 
+        }
+        .case-body ul li::before { 
+            content: '•'; position: absolute; left: 0; color: var(--accent); 
+            font-size: 1.5rem; line-height: 1; top: -2px; font-weight: bold;
+        }
+        .case-body strong { color: var(--text-dark); }
+
+        .tech-list { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+        .tech-list span { 
+            background: var(--bg-slate); border: 1px solid var(--border); 
+            padding: 8px 16px; border-radius: 50px; font-size: 0.95rem; 
+            font-weight: 600; color: var(--text-dark); 
+        }
+
+        .repo-structure { 
+            background: #0f172a; color: #e2e8f0; padding: 24px; 
+            border-radius: 16px; font-family: monospace; font-size: 0.95rem; 
+            line-height: 1.6; overflow-x: auto; margin-bottom: 32px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .action-links { display: flex; gap: 16px; margin-top: 40px; }
+        
+        @media (max-width: 768px) {
+            .back-btn { top: 20px; left: 20px; padding: 8px 16px; font-size: 0.85rem; }
+            .case-header { padding-top: 100px; }
+            .case-body { font-size: 1.05rem; }
+            .action-links { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn"><i data-feather="arrow-left"></i> Kembali</a>
+
+    <!-- BAGIAN HEADER -->
+    <header class="case-header">
+        <span class="eyebrow">Data Analytics Project • 05/2026 - 06/2026</span>
+        <h1 class="case-title">Analisis Penjualan Kafe End-to-End</h1>
+        <div class="tech-list" style="justify-content: center; margin-top: 32px;">
+            <span>Python</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span><span>Power BI</span><span>DAX</span>
+        </div>
+    </header>
+
+    <!-- GAMBAR PREVIEW DASHBOARD KAFE -->
+    <div class="case-hero-img container">
+        <img src="DashboardCoffe.png" alt="Preview Dashboard Penjualan Kafe">
+    </div>
+
+    <!-- ISI KONTEN -->
+    <main class="case-body">
+        
+        <h2><i data-feather="file-text"></i> Latar Belakang & Objektif</h2>
+        <!-- Revisi penghapusan kata CRISP-DM di sini -->
+        <p>Proyek ini bertujuan untuk menggali potensi data penjualan harian dari sebuah kedai kopi (kafe). Dengan memproses dan menganalisis <strong>2.999 data transaksi penjualan secara end-to-end</strong>, analisis ini mengevaluasi tren pendapatan, preferensi produk pelanggan, serta pola metode pembayaran untuk mengoptimalkan strategi bisnis operasional kafe.</p>
+
+        <h2><i data-feather="tool"></i> Metodologi & Eksekusi</h2>
+        <ul>
+            <li><strong>Data Cleaning & Exploratory Data Analysis (EDA):</strong> Memanfaatkan Library Python (Pandas, NumPy, Matplotlib, Seaborn) untuk membersihkan anomali data, mengidentifikasi korelasi antar variabel, dan memahami pola transaksi awal.</li>
+            <li><strong>Dashboard Integration:</strong> Menyusun hasil temuan menjadi dashboard interaktif menggunakan Power BI, yang dirancang khusus untuk memonitor KPI harian manajerial.</li>
+            <li><strong>DAX (Data Analysis Expressions):</strong> Pembuatan <i>measure</i> khusus untuk memformulasikan total revenue, rata-rata transaksi, dan agregasi data penjualan.</li>
+        </ul>
+
+        <h2><i data-feather="zap"></i> Insight Utama Berbasis Metrik</h2>
+        <p>Setelah melakukan ekstraksi data mendalam, beberapa wawasan utama yang ditemukan adalah:</p>
+        <ul>
+            <li>Total pendapatan (revenue) keseluruhan mencapai <strong>$25,36K</strong> dari 2.999 total transaksi.</li>
+            <li><strong>Sandwich</strong> teridentifikasi sebagai produk paling menguntungkan dan penyumbang revenue terbesar, menghasilkan total <strong>$4,8K</strong>.</li>
+            <li><strong>Bulan Januari</strong> tercatat sebagai periode dengan lonjakan penjualan (sales peak) tertinggi sepanjang tahun operasional, sementara terdapat penurunan penjualan di musim tertentu.</li>
+        </ul>
+
+        <h2><i data-feather="target"></i> Rekomendasi Strategis</h2>
+        <p>Berdasarkan insight yang ditemukan, saya menyusun rekomendasi bisnis yang <i>actionable</i> untuk meningkatkan pendapatan dan retensi pelanggan:</p>
+        <ul>
+            <li><strong>Product Bundling:</strong> Membuat paket kombinasi menu yang melibatkan Sandwich dengan minuman (cross-selling) untuk mendongkrak rata-rata nilai pesanan (Average Order Value).</li>
+            <li><strong>Strategi Musim Sepi:</strong> Mengevaluasi performa penjualan pada bulan dengan performa rendah dan meluncurkan promosi spesifik (seperti diskon jam tertentu atau event) untuk menstabilkan arus kas.</li>
+            <li><strong>Peningkatan Layanan In-store:</strong> Menyesuaikan fasilitas in-store berdasarkan analisis preferensi tipe layanan (Dine-in vs Takeaway) guna meningkatkan <i>customer experience</i> secara keseluruhan.</li>
+        </ul>
+
+        <h2><i data-feather="folder"></i> Struktur Repository</h2>
+<pre class="repo-structure">
+├── data/
+│   └── cafe_sales_raw.csv             # Data mentah transaksi
+│   └── cafe_sales_clean.csv           # Dataset siap pakai
+├── notebook/
+│   └── cafe_sales_analysis.ipynb      # Proses EDA & Analisis (Python)
+├── dashboard/
+│   └── cafe_sales_dashboard.pbix      # File dashboard Power BI
+├── DashboardCoffe.png                 # Screenshot dashboard
+└── README.md
+</pre>
+
+        <hr style="border-color: var(--border); margin: 60px 0 40px;">
+
+        <div style="text-align: center;">
+            <p style="margin-bottom: 24px;">Ingin mendiskusikan proses analitik di balik proyek ini?</p>
+            <div class="action-links" style="justify-content: center;">
+                <a href="https://www.linkedin.com/in/danang-arya-saputra/" target="_blank" class="btn-primary" style="text-decoration: none;">
+                    <i data-feather="linkedin"></i> Hubungi di LinkedIn
+                </a>
+                <a href="https://github.com/danangcorp/-End-to-End-Cafe-Sales-Analysis-Customer-Behavior-Project-2023-" target="_blank" class="btn-outline-dark" style="text-decoration: none; border: 1px solid var(--border); padding: 14px 32px; border-radius: 100px; color: var(--text-dark); font-weight: 600; display: inline-flex; gap: 8px; align-items: center;">
+                    <i data-feather="github"></i> Lihat Source Code
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Mengaktifkan icon Feather
+        feather.replace();
+    </script>
+</body>
+</html>
