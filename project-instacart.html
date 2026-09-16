@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instacart Market Basket Analysis — Danang Arya</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        :root {
+            --navy: #10182B;
+            --slate: #5B6472;
+            --line: #E7EAEF;
+            --bg-slate: #F6F8FB;
+            --accent: #2F6FED;
+            --accent-soft: #EAF1FF;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--navy);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Top bar */
+        .topbar {
+            border-bottom: 1px solid var(--line);
+            padding: 22px 0;
+        }
+
+        .topbar .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--slate);
+        }
+
+        .back-link:hover { color: var(--accent); }
+        .back-link svg { width: 18px; height: 18px; }
+
+        .topbar .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .topbar .logo span { color: var(--accent); }
+
+        /* Hero */
+        .case-hero {
+            padding: 72px 0 40px;
+        }
+
+        .case-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        .case-hero h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            max-width: 720px;
+            margin-bottom: 18px;
+        }
+
+        .case-hero p.lead {
+            font-size: 1.08rem;
+            color: var(--slate);
+            max-width: 640px;
+            margin-bottom: 28px;
+        }
+
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .meta-row span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: 8px;
+            background: var(--bg-slate);
+            border: 1px solid var(--line);
+            color: var(--navy);
+        }
+
+        /* Sections */
+        section {
+            padding: 48px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        h2.h-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 18px;
+            max-width: 640px;
+        }
+
+        .body-text {
+            color: var(--slate);
+            max-width: 680px;
+            font-size: 1rem;
+        }
+
+        .body-text + .body-text { margin-top: 12px; }
+
+        /* Workflow */
+        .flow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-top: 24px;
+        }
+
+        .flow-step {
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            background: var(--bg-slate);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+        }
+
+        .flow-arrow {
+            color: var(--slate);
+            font-size: 1rem;
+        }
+
+        /* Image frame */
+        .img-frame {
+            margin-top: 28px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            overflow: hidden;
+            background: var(--bg-slate);
+        }
+
+        .img-frame img {
+            width: 100%;
+            display: block;
+        }
+
+        .img-caption {
+            font-size: 0.85rem;
+            color: var(--slate);
+            margin-top: 10px;
+        }
+
+        /* Table */
+        .schema-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 28px;
+            font-size: 0.92rem;
+        }
+
+        .schema-table th {
+            text-align: left;
+            font-size: 0.8rem;
+            text-transform: none;
+            color: var(--slate);
+            font-weight: 600;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .schema-table td {
+            padding: 14px;
+            border-bottom: 1px solid var(--line);
+            vertical-align: top;
+            color: var(--navy);
+        }
+
+        .schema-table td strong { font-weight: 600; }
+        .schema-table td.tbl-name { white-space: nowrap; font-weight: 600; color: var(--accent); }
+
+        /* Questions list */
+        .q-list {
+            margin-top: 24px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .q-item {
+            display: flex;
+            gap: 14px;
+            padding: 16px;
+            background: var(--bg-slate);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        .q-item b { color: var(--accent); font-weight: 700; }
+
+        /* KPI grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .kpi-box {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 20px 16px;
+        }
+
+        .kpi-box h3 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .kpi-box p {
+            font-size: 0.82rem;
+            color: var(--slate);
+            margin-top: 4px;
+        }
+
+        /* Insight list */
+        .insight-list {
+            margin-top: 28px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .insight-item {
+            display: flex;
+            gap: 14px;
+        }
+
+        .insight-item .dot {
+            flex-shrink: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-top: 8px;
+        }
+
+        .insight-item h4 {
+            font-size: 0.98rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .insight-item p {
+            color: var(--slate);
+            font-size: 0.94rem;
+        }
+
+        /* Recommendation list */
+        .rec-list {
+            margin-top: 24px;
+            counter-reset: rec;
+            display: grid;
+            gap: 14px;
+        }
+
+        .rec-item {
+            position: relative;
+            padding: 16px 16px 16px 52px;
+            background: var(--bg-slate);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        .rec-item::before {
+            counter-increment: rec;
+            content: counter(rec);
+            position: absolute;
+            left: 16px;
+            top: 16px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer CTA */
+        .case-footer {
+            text-align: center;
+            padding: 64px 0 80px;
+        }
+
+        .case-footer h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .case-footer p {
+            color: var(--slate);
+            margin-bottom: 28px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 600;
+            padding: 13px 26px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        .btn-back svg { width: 18px; height: 18px; }
+
+        @media (max-width: 640px) {
+            .case-hero h1 { font-size: 1.8rem; }
+            .schema-table { font-size: 0.85rem; }
+            .schema-table td, .schema-table th { padding: 10px 8px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="wrap">
+            <a href="index.html" class="back-link">
+                <i data-feather="arrow-left"></i> Kembali ke Portofolio
+            </a>
+            <a href="index.html" class="logo">Danang<span>.</span></a>
+        </div>
+    </div>
+
+    <header class="case-hero wrap">
+        <span class="case-tag">Data Engineering & Analytics</span>
+        <h1>Instacart Market Basket Analysis & Customer Behavior Dashboard</h1>
+        <p class="lead">
+            Menganalisis 3,42 juta data pesanan grocery Instacart untuk memahami pola belanja pelanggan,
+            dari infrastruktur data hingga dashboard bisnis yang siap dipakai.
+        </p>
+        <div class="meta-row">
+            <span>Docker</span>
+            <span>PostgreSQL</span>
+            <span>Python (Pandas)</span>
+            <span>SQL</span>
+            <span>Power BI (DAX)</span>
+        </div>
+    </header>
+
+    <section class="wrap">
+        <div class="section-label">Ringkasan</div>
+        <h2 class="h-title">Dari data mentah hingga insight bisnis</h2>
+        <p class="body-text">
+            Proyek ini membangun alur data end-to-end untuk data grocery Instacart: mulai dari infrastruktur
+            database di Docker, pembersihan dan transformasi data dengan Python dan SQL, hingga dashboard
+            interaktif di Power BI yang menjawab pertanyaan seputar perilaku belanja, produk terlaris, dan
+            waktu transaksi tersibuk.
+        </p>
+        <div class="flow">
+            <span class="flow-step">Docker + PostgreSQL</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step">Data Cleaning (Python/SQL)</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step">Data Modeling (Power BI)</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step">DAX Measures</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step">Dashboard & Insight</span>
+        </div>
+    </section>
+
+    <section class="wrap">
+        <div class="section-label">Skema Data</div>
+        <h2 class="h-title">Relasi tabel (star schema)</h2>
+        <p class="body-text">
+            Data transaksi digabungkan dengan master produk hingga level departemen agar tren harian dan
+            reorder rate bisa dihitung secara akurat.
+        </p>
+
+        <div class="img-frame">
+            <img src="instacart-erd-schema.png" alt="Skema relasi tabel Instacart (star schema)">
+        </div>
+        <p class="img-caption">Model data: fact_orders & fact_order_products terhubung ke dim_products, yang terhubung ke dim_departments dan dim_aisles.</p>
+
+        <table class="schema-table">
+            <tr>
+                <th>Tabel</th>
+                <th>Isi</th>
+            </tr>
+            <tr>
+                <td class="tbl-name">fact_orders /<br>fact_order_products</td>
+                <td>Data transaksi pesanan: order_id, user_id, hari & jam order, product_id, status reorder.</td>
+            </tr>
+            <tr>
+                <td class="tbl-name">dim_products</td>
+                <td>Master data produk: product_id, product_name, aisle_id, department_id.</td>
+            </tr>
+            <tr>
+                <td class="tbl-name">dim_departments /<br>dim_aisles</td>
+                <td>Katalog kategori makro (departemen) dan sub-kategori (lorong/aisle) produk.</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="wrap">
+        <div class="section-label">Pertanyaan Bisnis</div>
+        <h2 class="h-title">Lima pertanyaan yang dijawab</h2>
+        <div class="q-list">
+            <div class="q-item"><b>Q1</b> Bagaimana volume transaksi dan tingkat reorder pelanggan?</div>
+            <div class="q-item"><b>Q2</b> Produk apa yang paling banyak dibeli?</div>
+            <div class="q-item"><b>Q3</b> Departemen mana penyumbang transaksi terbesar?</div>
+            <div class="q-item"><b>Q4</b> Hari apa volume pesanan paling tinggi?</div>
+            <div class="q-item"><b>Q5</b> Jam berapa transaksi mencapai puncaknya?</div>
+        </div>
+    </section>
+
+    <section class="wrap">
+        <div class="section-label">Dashboard & Insight</div>
+        <h2 class="h-title">Yang ditemukan dari data</h2>
+
+        <div class="kpi-grid">
+            <div class="kpi-box"><h3>3.42M</h3><p>Total Orders</p></div>
+            <div class="kpi-box"><h3>32.43M</h3><p>Total Items Sold</p></div>
+            <div class="kpi-box"><h3>206K</h3><p>Total Customers</p></div>
+            <div class="kpi-box"><h3>59%</h3><p>Reorder Rate</p></div>
+            <div class="kpi-box"><h3>9.48</h3><p>Avg Basket Size</p></div>
+        </div>
+
+        <div class="img-frame">
+            <img src="instacart-dashboard.png" alt="Dashboard Power BI Instacart Market Basket Analysis">
+        </div>
+        <p class="img-caption">Dashboard Power BI: produk terlaris, volume per departemen, pola hari, dan jam sibuk transaksi.</p>
+
+        <div class="insight-list">
+            <div class="insight-item">
+                <span class="dot"></span>
+                <div>
+                    <h4>Pelanggan loyal, belanja rutin</h4>
+                    <p>Reorder rate 59% dengan rata-rata 9-10 item per keranjang menunjukkan kebiasaan belanja stok mingguan.</p>
+                </div>
+            </div>
+            <div class="insight-item">
+                <span class="dot"></span>
+                <div>
+                    <h4>Produk segar & organik mendominasi</h4>
+                    <p>Banana, Organic Strawberries, dan Organic Baby Spinach jadi produk paling laris.</p>
+                </div>
+            </div>
+            <div class="insight-item">
+                <span class="dot"></span>
+                <div>
+                    <h4>Produce jadi kategori andalan</h4>
+                    <p>Departemen Produce menyumbang volume hampir 2x lipat dari Dairy & Eggs.</p>
+                </div>
+            </div>
+            <div class="insight-item">
+                <span class="dot"></span>
+                <div>
+                    <h4>Puncak di Minggu dan Senin</h4>
+                    <p>Volume pesanan tertinggi terjadi di awal minggu, lalu menurun stabil di hari kerja.</p>
+                </div>
+            </div>
+            <div class="insight-item">
+                <span class="dot"></span>
+                <div>
+                    <h4>Jam sibuk siang hari</h4>
+                    <p>Transaksi memuncak pukul 10:00-16:00, mencerminkan belanja siang agar pesanan tiba sebelum waktu memasak.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrap">
+        <div class="section-label">Rekomendasi</div>
+        <h2 class="h-title">Rekomendasi bisnis</h2>
+        <div class="rec-list">
+            <div class="rec-item">Kembangkan fitur auto-reorder untuk produk rutin pelanggan.</div>
+            <div class="rec-item">Perkuat cold-chain logistics untuk produk fresh/organic agar terhindar stockout.</div>
+            <div class="rec-item">Optimalkan alokasi kurir di hari Minggu-Senin, khususnya pukul 10:00-16:00.</div>
+            <div class="rec-item">Luncurkan promo tengah minggu untuk meratakan distribusi permintaan harian.</div>
+            <div class="rec-item">Rekomendasikan produk pelengkap saat checkout untuk mendongkrak nilai pesanan.</div>
+        </div>
+    </section>
+
+    <div class="case-footer wrap">
+        <h2>Tertarik proyek data lainnya?</h2>
+        <p>Lihat studi kasus lain di portofolio saya.</p>
+        <a href="index.html#portfolio" class="btn-back">
+            <i data-feather="arrow-left"></i> Kembali ke Portofolio
+        </a>
+    </div>
+
+    <script>feather.replace();</script>
+</body>
+
+</html>
