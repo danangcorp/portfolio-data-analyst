@@ -20,6 +20,7 @@
         /* =========================================
            CASE STUDY SPECIFIC STYLING
         ========================================= */
+        html { scroll-behavior: smooth; }
         body { background-color: var(--bg-main); }
         
         .back-btn { 
@@ -31,15 +32,28 @@
         }
         .back-btn:hover { background: var(--bg-slate); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
-        .case-header { padding: 140px 5% 60px; text-align: center; max-width: 900px; margin: 0 auto; }
+        .case-header { padding: 140px 5% 40px; text-align: center; max-width: 900px; margin: 0 auto; }
         .case-title { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; line-height: 1.15; letter-spacing: -1px; }
+        .case-lead { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 720px; margin: 0 auto; }
         
         .case-hero-img { 
-            width: 100%; max-width: 1000px; margin: 0 auto 80px; 
+            width: 100%; max-width: 1000px; margin: 0 auto 40px; 
             border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg); 
             border: 1px solid var(--border); background: var(--bg-slate);
         }
         .case-hero-img img { width: 100%; display: block; object-fit: cover; }
+
+        /* Daftar isi */
+        .toc { 
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; 
+            max-width: 900px; margin: 0 auto 60px; padding: 0 5%; 
+        }
+        .toc a { 
+            background: #fff; border: 1px solid var(--border); padding: 6px 14px; 
+            border-radius: 50px; font-size: 0.85rem; font-weight: 600; 
+            color: var(--text-dark); text-decoration: none; transition: var(--transition);
+        }
+        .toc a:hover { background: var(--bg-slate); }
 
         .case-body { 
             max-width: 760px; margin: 0 auto; padding: 0 5% 120px; 
@@ -51,6 +65,16 @@
             display: flex; align-items: center; gap: 12px;
         }
         .case-body h2 i { color: var(--accent); }
+        .case-body h3 { 
+            font-size: 1.3rem; margin: 44px 0 16px; color: var(--text-dark); 
+            display: flex; align-items: center; gap: 12px; 
+        }
+        .q-badge { 
+            width: 32px; height: 32px; border-radius: 50%; background: var(--bg-slate); 
+            border: 1px solid var(--border); color: var(--accent); font-size: 0.95rem; 
+            font-weight: 800; display: inline-flex; align-items: center; 
+            justify-content: center; flex: none; 
+        }
         .case-body p { margin-bottom: 24px; }
         
         .case-body ul { padding-left: 0; margin-bottom: 32px; list-style: none; }
@@ -82,11 +106,40 @@
             border-radius: 12px; color: #b45309; font-weight: 500; margin-bottom: 32px;
             display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 0.95rem; justify-content: center; text-align: center;
         }
+
+        .note-box {
+            background: var(--bg-slate); border: 1px solid var(--border); 
+            border-left: 4px solid var(--accent); padding: 16px 20px; 
+            border-radius: 12px; font-size: 1rem; line-height: 1.7; margin-bottom: 32px;
+        }
+        .note-box p { margin-bottom: 0; }
+
+        /* Kartu angka kunci */
+        .kpi-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 16px; margin-bottom: 32px; 
+        }
+        .kpi { 
+            background: #fff; border: 1px solid var(--border); border-radius: 16px; 
+            padding: 18px 20px; box-shadow: var(--shadow-sm); 
+        }
+        .kpi .kpi-value { display: block; font-size: 1.5rem; font-weight: 800; color: var(--text-dark); line-height: 1.2; }
+        .kpi .kpi-label { font-size: 0.85rem; line-height: 1.4; color: var(--text-muted); }
+
+        /* Gambar chart per pertanyaan */
+        .chart-fig { 
+            margin: 0 0 32px; border: 1px solid var(--border); border-radius: 16px; 
+            overflow: hidden; background: var(--bg-slate); 
+        }
+        .chart-fig img { width: 100%; display: block; }
+        .chart-fig figcaption { padding: 10px 16px; font-size: 0.9rem; line-height: 1.5; }
         
         .action-links { display: flex; gap: 16px; margin-top: 40px; }
         
         /* Table Styling */
+        .table-wrap { overflow-x: auto; margin-bottom: 32px; }
         .data-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 1rem; }
+        .table-wrap .data-table { margin-bottom: 0; font-size: 0.92rem; min-width: 520px; }
         .data-table th, .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); text-align: left; }
         .data-table th { background-color: var(--bg-slate); color: var(--text-dark); font-weight: 700; }
         
@@ -104,111 +157,396 @@
 
     <!-- BAGIAN HEADER -->
     <header class="case-header">
-        <span class="eyebrow">Bootcamp Data Analyst with SQL & Python • DQLab</span>
-        <h1 class="case-title">Analisis Data Pesanan Restoran & Dashboard</h1>
+        <span class="eyebrow">Bootcamp Data Analyst with SQL &amp; Python • DQLab</span>
+        <h1 class="case-title">Analisis Data Pesanan Restoran &amp; Dashboard</h1>
+        <p class="case-lead">Analisis 12.234 baris transaksi restoran selama satu kuartal untuk menjawab enam pertanyaan bisnis: menu mana yang laris, kapan restoran paling sibuk, dan kategori masakan mana yang layak dikembangkan.</p>
         <div class="tech-list" style="justify-content: center; margin-top: 32px;">
             <span>Python (Pandas)</span><span>Google Colab</span><span>Looker Studio</span>
         </div>
     </header>
 
-    <!-- GAMBAR PREVIEW DASHBOARD -->
+    <!-- GAMBAR PREVIEW DASHBOARD (ganti isi file dengan screenshot dashboard terbaru) -->
     <div class="case-hero-img container">
-        <img src="DashboardRestaurantOrder.png" alt="Preview Dashboard Analisis Pesanan Restoran">
+        <img src="Dashboard restaurant.png" alt="Preview Dashboard Analisis Pesanan Restoran">
     </div>
+
+    <!-- DAFTAR ISI -->
+    <nav class="toc" aria-label="Daftar isi">
+        <a href="#ringkasan">Ringkasan</a>
+        <a href="#latar-belakang">Latar Belakang</a>
+        <a href="#pertanyaan">Pertanyaan Bisnis</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#alur-kerja">Alur Kerja</a>
+        <a href="#cleaning">Data Cleaning</a>
+        <a href="#feature">Feature Engineering</a>
+        <a href="#temuan">Temuan</a>
+        <a href="#menu">Analisis Menu</a>
+        <a href="#rekomendasi">Rekomendasi</a>
+        <a href="#keterbatasan">Keterbatasan</a>
+        <a href="#skills">Skills</a>
+        <a href="#menjalankan">Menjalankan Ulang</a>
+        <a href="#repo">Repository</a>
+    </nav>
 
     <!-- ISI KONTEN -->
     <main class="case-body">
-        
-        <h2><i data-feather="file-text"></i> Ringkasan Proyek</h2>
-        <p>Proyek ini menganalisis <strong>12.234 baris data pesanan restoran selama satu kuartal</strong> untuk memahami pola pemesanan pelanggan, performa menu, waktu pemesanan dengan aktivitas tertinggi dan terendah, serta kategori masakan yang berpotensi untuk dikembangkan.<span class="hide-cite"></span></p>
-        <p>Analisis dilakukan menggunakan <strong>Google Colab dan Python</strong> untuk proses <i>data preparation, data cleaning, data transformation,</i> dan <i>exploratory data analysis (EDA)</i>. Dataset yang digunakan terdiri dari dua tabel mentah (transaksi dan menu) yang kemudian diproses dan digabungkan. Hasil analisis kemudian divisualisasikan menggunakan <strong>Looker Studio</strong> untuk menghasilkan <i>business insights</i> dan rekomendasi operasional restoran.<span class="hide-cite"></span></p>
 
-        <!-- Workflow Highlight -->
-        <div class="highlight-box">
-            <strong><i data-feather="git-commit" style="display: inline-block; vertical-align: middle; margin-right: 8px;"></i> Data Analytics Workflow:</strong><br>
-            Data Preparation → Data Cleaning → Table Merge → EDA → Business Analysis → Looker Studio Dashboard → Business Recommendations<span class="hide-cite"></span>
+        <!-- 3. RINGKASAN -->
+        <h2 id="ringkasan"><i data-feather="file-text"></i> Ringkasan Proyek</h2>
+        <p>Proyek ini menganalisis <strong>12.234 baris data transaksi restoran (5.370 order) selama satu kuartal, 1 Januari – 31 Maret 2023</strong>, untuk memahami pola pemesanan pelanggan, performa menu, jam dan hari dengan aktivitas tertinggi dan terendah, serta kategori masakan yang layak dikembangkan. Setelah proses cleaning, <strong>12.097 baris dan 5.343 order</strong> digunakan dalam analisis.</p>
+        <p>Analisis dilakukan menggunakan <strong>Google Colab dan Python (Pandas)</strong> untuk <i>data preparation, data cleaning, feature engineering, validasi,</i> dan <i>exploratory data analysis (EDA)</i>. Hasilnya divisualisasikan dalam dashboard <strong>Looker Studio</strong> yang menjawab enam pertanyaan bisnis, lengkap dengan rekomendasi operasional untuk restoran.</p>
+
+        <div class="kpi-grid">
+            <div class="kpi"><span class="kpi-value">5.343</span><span class="kpi-label">Total order</span></div>
+            <div class="kpi"><span class="kpi-value">$159.217,90</span><span class="kpi-label">Total pendapatan</span></div>
+            <div class="kpi"><span class="kpi-value">12.097</span><span class="kpi-label">Item terjual</span></div>
+            <div class="kpi"><span class="kpi-value">$29,80</span><span class="kpi-label">Rata-rata nilai per order</span></div>
+            <div class="kpi"><span class="kpi-value">2,26</span><span class="kpi-label">Rata-rata item per order</span></div>
+            <div class="kpi"><span class="kpi-value">32</span><span class="kpi-label">Menu dalam 4 kategori</span></div>
         </div>
 
-        <h2><i data-feather="database"></i> Gambaran Dataset & Relasi Tabel</h2>
-        <p>Dataset bersumber dari <strong>Maven Analytics</strong>, mewakili pesanan restoran fiktif. Untuk mendapatkan wawasan yang komprehensif, saya menggabungkan dua dataset terpisah menggunakan Pandas:<span class="hide-cite"></span></p>
-        
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Tabel Data</th>
-                    <th>Deskripsi & Kolom Utama</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong><code>order_details.csv</code></strong></td>
-                    <td>Berisi 12.234 baris detail transaksi. Kolom utama: <code>order_id</code>, <code>order_date</code>, <code>order_time</code>, dan <code>menu_item_id</code>.<span class="hide-cite"></span></td>
-                </tr>
-                <tr>
-                    <td><strong><code>menu_items.csv</code></strong></td>
-                    <td>Berisi katalog/master data menu. Kolom utama: <code>menu_item_id</code>, <code>item_name</code>, <code>category</code>, dan <code>price</code>.<span class="hide-cite"></span></td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <p>Proses penggabungan (<i>Merge/Join</i>) dilakukan berdasarkan <strong><code>menu_item_id</code></strong>, sehingga informasi transaksi harian dapat dikombinasikan dengan nama menu, kategori masakan, dan harganya untuk kebutuhan agregasi revenue.<span class="hide-cite"></span></p>
-
-        <h2><i data-feather="help-circle"></i> Pertanyaan Bisnis (5W + 1H)</h2>
+        <p><strong>Tiga temuan terbesar:</strong></p>
         <ul>
-            <li><strong>What (Item):</strong> Item apa yang paling banyak dan paling sedikit dipesan, serta termasuk dalam kategori apa?<span class="hide-cite"></span></li>
-            <li><strong>What (Pengeluaran):</strong> Pesanan mana yang memiliki total pengeluaran tertinggi dan item apa saja yang dibelinya?<span class="hide-cite"></span></li>
-            <li><strong>When (Waktu):</strong> Pada waktu (jam) apa jumlah pesanan paling banyak dan paling sedikit terjadi?<span class="hide-cite"></span></li>
-            <li><strong>Where (Kategori):</strong> Kategori masakan mana yang memiliki jumlah pesanan terbanyak?<span class="hide-cite"></span></li>
-            <li><strong>When (Hari):</strong> Bagaimana pola pesanan berdasarkan hari, termasuk hari paling ramai dan paling sepi?<span class="hide-cite"></span></li>
-            <li><strong>Why (Pengembangan Menu):</strong> Berdasarkan jumlah pesanan dan pendapatan, kategori masakan apa yang sebaiknya difokuskan?<span class="hide-cite"></span></li>
+            <li><strong>Jam dan hari:</strong> dua puncak jelas terjadi pada <strong>12:00–13:00</strong> dan <strong>17:00–18:00</strong> (sekitar 46% order), dengan lembah di 15:00. Pola per hari relatif datar: Senin paling ramai, Rabu paling sepi.</li>
+            <li><strong>Kategori:</strong> <strong>Asian</strong> terlaris (28,7% item) dan paling efisien ($5.840 pendapatan per menu), sedangkan <strong>Italian</strong> menyumbang pendapatan tertinggi ($49.462,70).</li>
+            <li><strong>Order besar:</strong> order berisi 5 item atau lebih hanya 3,4% dari seluruh order, tetapi menyumbang <strong>13% pendapatan</strong>, dan 91% di antaranya terjadi saat makan siang.</li>
         </ul>
 
-        <h2><i data-feather="zap"></i> Insight Utama Berbasis Data</h2>
+        <!-- 7. ALUR KERJA (ringkas) -->
+        <div class="highlight-box">
+            <strong><i data-feather="git-commit" style="display: inline-block; vertical-align: middle; margin-right: 8px;"></i> Data Analytics Workflow:</strong><br>
+            Data Preparation → Data Cleaning → Table Merge → Feature Engineering → EDA → Validasi → Looker Studio Dashboard → Business Recommendations
+        </div>
+
+        <!-- 4. LATAR BELAKANG -->
+        <h2 id="latar-belakang"><i data-feather="briefcase"></i> Latar Belakang dan Tujuan Bisnis</h2>
+        <p>Skenarionya: sebuah restoran bertema masakan internasional (American, Asian, Italian, Mexican) ingin mengevaluasi menunya setelah satu kuartal beroperasi. Datanya berasal dari dataset publik dengan restoran fiktif, tetapi pertanyaannya mewakili kebutuhan nyata manajer restoran dan tim operasional.</p>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Keputusan yang dibantu</th><th>Pertanyaan yang relevan</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Menyusun atau mengevaluasi menu</strong></td><td>Menu apa yang laris, menu apa yang lemah, kategori mana yang dikembangkan</td></tr>
+                    <tr><td><strong>Menjadwalkan staf dan dapur</strong></td><td>Jam dan hari apa yang paling sibuk</td></tr>
+                    <tr><td><strong>Merancang promo</strong></td><td>Kapan trafik rendah, dan seperti apa pola order besar</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 5. PERTANYAAN BISNIS -->
+        <h2 id="pertanyaan"><i data-feather="help-circle"></i> Pertanyaan Bisnis (5W + 1H)</h2>
         <ul>
-            <li><strong>Performa Item:</strong> <i>Hamburger</i>, <i>Korean Beef Bowl</i>, dan <i>Edamame</i> adalah item yang paling banyak dipesan. Sebaliknya, <i>Orange Chicken</i> dan <i>Chips & Salsa</i> mencatat jumlah pesanan terendah.<span class="hide-cite"></span></li>
-            <li><strong>Pengeluaran Tertinggi:</strong> <strong>Order ID 2725</strong> menjadi pesanan dengan total nilai terbesar (<strong>$162,55</strong>), yang mengindikasikan adanya perilaku transaksi rombongan (<i>group package</i>) untuk item seperti <i>Shrimp Scampi</i> dan <i>Steak Burrito</i>.<span class="hide-cite"></span></li>
-            <li><strong>Analisis Waktu:</strong> Puncak aktivitas pesanan terjadi pada jam <strong>12:00 (~1.7K pesanan)</strong> dan <strong>17:00 (~1.4K pesanan)</strong>. Sementara jam sepi terjadi di pukul 10:00, 15:00, dan 23:00.<span class="hide-cite"></span></li>
-            <li><strong>Kategori Terpopuler:</strong> Kategori <strong>Asian</strong> memimpin secara dominan dengan ~3.500 pesanan, diikuti Italian dan Mexican yang seimbang di angka ~2.900 pesanan. Kategori American memiliki pesanan terendah.<span class="hide-cite"></span></li>
-            <li><strong>Pola Harian:</strong> <strong>Rabu</strong> mencatat volume pesanan tertinggi (~8.000 pesanan), meningkat hampir dua kali lipat dibandingkan hari Minggu yang sangat sepi (~4.100 pesanan).<span class="hide-cite"></span></li>
-            <li><strong>Prioritas Pengembangan:</strong> Kategori <i>Asian</i> menjadi fokus utama karena sangat efisien; ia merajai volume penjualan meskipun hanya memiliki 8 jenis item di dalam katalognya.<span class="hide-cite"></span></li>
+            <li><strong>What (Item):</strong> Item apa yang paling banyak dan paling sedikit dipesan, serta termasuk dalam kategori apa?</li>
+            <li><strong>What (Pengeluaran):</strong> Order mana yang memiliki total pengeluaran tertinggi dan item apa saja yang dibelinya?</li>
+            <li><strong>When (Jam):</strong> Pada jam berapa jumlah order paling banyak dan paling sedikit terjadi?</li>
+            <li><strong>Where (Kategori):</strong> Kategori masakan mana yang memiliki pesanan terbanyak?</li>
+            <li><strong>When (Hari):</strong> Bagaimana pola order berdasarkan hari, termasuk hari paling ramai dan paling sepi?</li>
+            <li><strong>Why (Pengembangan Menu):</strong> Berdasarkan jumlah pesanan dan pendapatan, kategori masakan apa yang sebaiknya difokuskan?</li>
         </ul>
 
-        <h2><i data-feather="check-circle"></i> Project Outcomes</h2>
+        <!-- 6. DATASET -->
+        <h2 id="dataset"><i data-feather="database"></i> Deskripsi Dataset</h2>
+        <p>Dataset bersumber dari <strong>Maven Analytics (Restaurant Orders)</strong> dan mewakili pesanan restoran fiktif. Dua tabel terpisah saya gabungkan menggunakan Pandas.</p>
+
+        <p><strong><code>order_details.csv</code></strong> (12.234 baris, 5 kolom). Satu baris mewakili satu item yang dipesan dalam suatu order, dan satu order bisa berisi beberapa baris.</p>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Kolom</th><th>Tipe</th><th>Deskripsi</th></tr></thead>
+                <tbody>
+                    <tr><td><code>order_details_id</code></td><td>integer</td><td>ID unik tiap baris item (primary key)</td></tr>
+                    <tr><td><code>order_id</code></td><td>integer</td><td>ID order. Item dengan <code>order_id</code> sama berarti satu transaksi</td></tr>
+                    <tr><td><code>order_date</code></td><td>teks (<code>m/d/yy</code>)</td><td>Tanggal order</td></tr>
+                    <tr><td><code>order_time</code></td><td>teks (12 jam)</td><td>Waktu order</td></tr>
+                    <tr><td><code>item_id</code></td><td>float</td><td>ID menu yang dipesan (foreign key ke <code>menu_items.menu_item_id</code>)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p><strong><code>menu_items.csv</code></strong> (32 baris, 4 kolom).</p>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Kolom</th><th>Tipe</th><th>Deskripsi</th></tr></thead>
+                <tbody>
+                    <tr><td><code>menu_item_id</code></td><td>integer</td><td>ID unik menu (primary key), rentang 101–132</td></tr>
+                    <tr><td><code>item_name</code></td><td>teks</td><td>Nama menu</td></tr>
+                    <tr><td><code>category</code></td><td>teks</td><td>American (6 menu), Asian (8), Italian (9), Mexican (9)</td></tr>
+                    <tr><td><code>price</code></td><td>float</td><td>Harga satuan, rentang $5,00 – $19,95</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Kolom <code>item_id</code> di-<i>rename</i> menjadi <code>menu_item_id</code>, lalu kedua tabel digabung dengan <strong><i>left join</i></strong> (relasi <i>many-to-one</i>, divalidasi dengan <code>validate='many_to_one'</code>).</p>
+        <div class="note-box">
+            <p><strong>Asumsi penting:</strong> tabel transaksi tidak memiliki kolom harga maupun kuantitas, sehingga pendapatan dihitung dari harga menu dengan satu baris dihitung sebagai satu porsi. Mata uang diasumsikan USD karena tidak disebutkan di sumber data. Periode data dimulai hari Minggu, sehingga jumlah hari kalender tiap hari tidak sama (Sabtu 12 hari, hari lain 13 hari), dan perbandingan antar hari memakai rata-rata per hari kalender.</p>
+        </div>
+
+        <!-- 7. ALUR KERJA -->
+        <h2 id="alur-kerja"><i data-feather="git-merge"></i> Alur Kerja</h2>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Tahap</th><th>Isi</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1. Load dan inspeksi</strong></td><td>Membaca kedua CSV, memeriksa struktur, tipe data, dan missing value</td></tr>
+                    <tr><td><strong>2. Cleaning</strong></td><td>Menangani baris <code>item_id</code> kosong, konversi tipe data, cek duplikat dan integritas</td></tr>
+                    <tr><td><strong>3. Merge</strong></td><td>Menggabungkan transaksi dengan menu, divalidasi dengan jumlah baris dan total pendapatan</td></tr>
+                    <tr><td><strong>4. Feature engineering</strong></td><td>Membuat kolom waktu, sesi, segmen order, dan kuadran menu</td></tr>
+                    <tr><td><strong>5. EDA</strong></td><td>Menjawab enam pertanyaan bisnis, satu per satu</td></tr>
+                    <tr><td><strong>6. Validasi akhir</strong></td><td>24 pengecekan angka kunci yang dihitung ulang secara independen</td></tr>
+                    <tr><td><strong>7. Export dan dashboard</strong></td><td>Menyimpan satu tabel bersih untuk dashboard Looker Studio</td></tr>
+                    <tr><td><strong>8. Rekomendasi</strong></td><td>Menyusun rekomendasi berbasis temuan</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 8. DATA CLEANING -->
+        <h2 id="cleaning"><i data-feather="filter"></i> Data Cleaning dan Validasi</h2>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Masalah</th><th>Temuan</th><th>Keputusan</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Missing value</strong></td>
+                        <td><code>item_id</code> kosong di <strong>137 baris (1,12%)</strong>, tersebar acak (1,05–1,25% per bulan, tidak menumpuk di jam tertentu)</td>
+                        <td><strong>Dibuang</strong> dan disimpan terpisah. <code>item_id</code> adalah identitas menu, sehingga tidak bisa diisi tanpa mengarang penjualan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dampak ke order</strong></td>
+                        <td>27 order hilang seluruhnya, 110 order hilang sebagian itemnya</td>
+                        <td>Tersisa <strong>12.097 baris</strong> dan <strong>5.343 order</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tipe data</strong></td>
+                        <td><code>item_id</code> bertipe float, tanggal dan waktu masih teks</td>
+                        <td><code>item_id</code> → integer, tanggal dan waktu → datetime</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Duplikat</strong></td>
+                        <td>Tidak ada duplikat <code>order_details_id</code></td>
+                        <td>Tidak ada tindakan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Item berulang dalam satu order</strong></td>
+                        <td>307 baris</td>
+                        <td><strong>Dipertahankan</strong>, karena pelanggan memesan lebih dari satu porsi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integritas relasi</strong></td>
+                        <td>Tidak ada <code>item_id</code> yang tidak terdaftar di menu, seluruh 32 menu pernah terjual</td>
+                        <td>Tidak ada tindakan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>Validasi akhir:</strong> 24 pengecekan lolos. Jumlah baris, order unik, total pendapatan, rata-rata nilai order, dan pendapatan per kategori dihitung ulang secara independen dari file mentah (tanpa merge), lalu dibandingkan dengan tabel hasil olahan. Total pada setiap dimensi (hari, jam, sesi, bulan, kategori, tipe hari) juga dicek agar tidak ada baris yang hilang.</p>
+
+        <!-- 9. FEATURE ENGINEERING -->
+        <h2 id="feature"><i data-feather="layers"></i> Feature Engineering</h2>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Kolom baru</th><th>Isi</th><th>Kegunaan</th></tr></thead>
+                <tbody>
+                    <tr><td><code>hari</code>, <code>urutan_hari</code></td><td>Nama hari dan urutan Senin (1) – Minggu (7)</td><td>Pola per hari dan pengurutan chart</td></tr>
+                    <tr><td><code>tipe_hari</code></td><td>Hari Kerja atau Akhir Pekan</td><td>Perbandingan hari kerja dan akhir pekan</td></tr>
+                    <tr><td><code>jam</code>, <code>jam_label</code></td><td>Jam order (10–23) dan labelnya (<code>12:00</code>)</td><td>Pola per jam</td></tr>
+                    <tr><td><code>sesi</code></td><td>Pagi, Makan Siang (12–14), Sore, Makan Malam (17–20), Larut Malam</td><td>Menganalisis kapan order besar terjadi</td></tr>
+                    <tr><td><code>jumlah_item</code></td><td>Selalu bernilai 1</td><td>Dasar menghitung item terjual</td></tr>
+                    <tr><td><code>ukuran_order</code>, <code>segmen_order</code></td><td>Jumlah item dalam order, dan segmen Order Reguler (1–4 item) atau Order Besar (≥5 item)</td><td>Mengisolasi order besar</td></tr>
+                    <tr><td><code>kuadran_menu</code></td><td>Star, Plowhorse, Puzzle, atau Dog</td><td>Evaluasi menu</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Dua satuan dibedakan secara konsisten: <strong>item terjual</strong> (12.097 baris) dan <strong>order</strong> (5.343 transaksi unik).</p>
+
+        <!-- 10. TEMUAN PER PERTANYAAN -->
+        <h2 id="temuan"><i data-feather="zap"></i> Temuan per Pertanyaan</h2>
+
+        <h3><span class="q-badge">1</span> Item terlaris dan terendah</h3>
         <ul>
-            <li>Melakukan <i>data cleaning, transformation</i>, dan penggabungan dua tabel dataset mentah menggunakan library Pandas.<span class="hide-cite"></span></li>
-            <li>Mengubah 12.234 baris raw data menjadi profil analitik yang mengidentifikasi secara presisi waktu dan hari puncak operasional sebuah restoran.<span class="hide-cite"></span></li>
-            <li>Menghasilkan <i>dashboard Looker Studio interaktif</i> untuk memonitor popularitas item, performa kategori, dan distribusi penjualan berdasarkan waktu.<span class="hide-cite"></span></li>
+            <li><strong>Terlaris:</strong> <i>Hamburger</i> (622), <i>Edamame</i> (620), <i>Korean Beef Bowl</i> (588), <i>Cheeseburger</i> (583), dan <i>French Fries</i> (571). Selisih antar item teratas sangat tipis (4,7–5,1% dari total item).</li>
+            <li><strong>Paling sedikit:</strong> <i>Chicken Tacos</i> (123, hanya 1,02% item), <i>Potstickers</i> (205), <i>Cheese Lasagna</i> (207), <i>Steak Tacos</i> (214), dan <i>Cheese Quesadillas</i> (233). Chicken Tacos jauh di bawah item terendah berikutnya.</li>
+            <li><strong>Volume dan pendapatan tidak selalu sejalan:</strong> Edamame laku 620 kali tetapi hanya menyumbang $3.100 karena harganya $5. Korean Beef Bowl menjadi penyumbang pendapatan terbesar ($10.554,60), disusul Spaghetti &amp; Meatballs ($8.436,50) dan Tofu Pad Thai ($8.149,00).</li>
+        </ul>
+        <!-- Aktifkan setelah gambar tersedia:
+        <figure class="chart-fig"><img src="q1_item.png" alt="Item terlaris dan terendah"><figcaption>Item terlaris dan terendah berdasarkan item terjual.</figcaption></figure>
+        -->
+
+        <h3><span class="q-badge">2</span> Order dengan pengeluaran tertinggi</h3>
+        <ul>
+            <li><strong>Order 440</strong> tertinggi: <strong>$192,15</strong> untuk 14 item (8 Januari 2023, sekitar pukul 12:00). Empat order berikutnya: 2075 ($191,05), 1957 ($190,10), 330 ($189,70), dan 2675 ($185,10).</li>
+            <li><strong>Isi order 440:</strong> 12 menu berbeda, dengan Spaghetti &amp; Meatballs dan Fettuccine Alfredo masing-masing 2 porsi. <strong>8 dari 14 item adalah menu Italian</strong>, dicampur dengan menu Asian, Mexican, dan American.</li>
+            <li>Nilainya sekitar 6,4 kali rata-rata order ($29,80), tetapi bukan kesalahan data. Rata-rata order lebih tinggi dari median ($24,90), artinya distribusinya miring ke kanan.</li>
+            <li><strong>Order besar (≥5 item):</strong> distribusi jumlah item menunjukkan titik patah yang tegas, dari 702 order berisi 4 item turun ke 32 order berisi 5 item. Sebanyak 182 order (3,41%) berperilaku berbeda dari order reguler.</li>
+        </ul>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Segmen</th><th>Order</th><th>Pendapatan</th><th>Nilai per order</th><th>Item per order</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Order Besar (≥5 item)</strong></td><td>182 (3,41%)</td><td>$20.771,50 (13,05%)</td><td>$114,13</td><td>8,66</td></tr>
+                    <tr><td><strong>Order Reguler (1–4 item)</strong></td><td>5.161 (96,59%)</td><td>$138.446,40 (86,95%)</td><td>$26,83</td><td>2,04</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>90,66% order besar terjadi saat makan siang (12:00–14:59)</strong>, dengan komposisi kategori yang campur. Polanya konsisten dengan pesanan makan siang bersama (misalnya tim kantor), tetapi ini <strong>dugaan</strong> karena data tidak mencatat jumlah orang.</p>
+        <!-- Aktifkan setelah gambar tersedia:
+        <figure class="chart-fig"><img src="q2_order.png" alt="Order termahal"><figcaption>Lima order termahal dan isi order 440.</figcaption></figure>
+        -->
+
+        <h3><span class="q-badge">3</span> Pola order per jam</h3>
+        <ul>
+            <li><strong>Dua puncak:</strong> 12:00 (644 order), 17:00 (618), 18:00 (595), dan 13:00 (590). Keempat jam itu menampung <strong>45,8% order</strong> dan <strong>48,4% pendapatan</strong>.</li>
+            <li><strong>Lembah di 15:00</strong> (354 order), sekitar 1,8 kali lebih sedikit dari puncak siang. Jam terendah di jam operasional penuh adalah 22:00 (151 order).</li>
+            <li>Order makan siang lebih bernilai (sekitar 2,6 item atau $34–35 per order) daripada makan malam (sekitar 2,2 item atau $28–29), sebagian besar karena order besar yang terjadi saat makan siang.</li>
+            <li>Jam 10:00 dan 23:00 sedikit hanya karena itu jam buka dan tutup parsial (order pertama 10:50, terakhir 23:05), jadi bukan "jam sepi".</li>
+        </ul>
+        <!-- Aktifkan setelah gambar tersedia:
+        <figure class="chart-fig"><img src="q3_jam.png" alt="Order per jam"><figcaption>Jumlah order dan pendapatan per jam.</figcaption></figure>
+        -->
+
+        <h3><span class="q-badge">4</span> Kategori masakan</h3>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Kategori</th><th>Menu</th><th>Item terjual</th><th>Pendapatan</th><th>Per menu</th><th>Order memuat</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Asian</strong></td><td>8</td><td>3.470 (28,68%)</td><td>$46.720,65 (29,34%)</td><td><strong>$5.840,08</strong></td><td>49,32%</td></tr>
+                    <tr><td><strong>Italian</strong></td><td>9</td><td>2.948 (24,37%)</td><td><strong>$49.462,70</strong> (31,07%)</td><td>$5.495,86</td><td>42,90%</td></tr>
+                    <tr><td><strong>Mexican</strong></td><td>9</td><td>2.945 (24,34%)</td><td>$34.796,80 (21,85%)</td><td>$3.866,31</td><td>42,41%</td></tr>
+                    <tr><td><strong>American</strong></td><td>6</td><td>2.734 (22,60%)</td><td>$28.237,75 (17,74%)</td><td>$4.706,29</td><td>40,28%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <ul>
+            <li><strong>Asian terbanyak</strong> dari sisi volume, dan hampir separuh order memuat setidaknya satu menu Asian.</li>
+            <li><strong>Italian tertinggi</strong> dari sisi pendapatan berkat harga rata-rata per item paling tinggi ($16,78, dibanding Asian $13,46).</li>
+            <li>Kolom "order memuat" tidak dijumlahkan, karena satu order bisa berisi beberapa kategori.</li>
+        </ul>
+        <!-- Aktifkan setelah gambar tersedia:
+        <figure class="chart-fig"><img src="q4_kategori.png" alt="Kategori masakan"><figcaption>Item terjual dan pendapatan per kategori.</figcaption></figure>
+        -->
+
+        <h3><span class="q-badge">5</span> Pola order per hari</h3>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Hari</th><th>Sen</th><th>Sel</th><th>Rab</th><th>Kam</th><th>Jum</th><th>Sab</th><th>Min</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Order per hari</strong></td><td><strong>67,77</strong></td><td>58,38</td><td><strong>52,31</strong></td><td>56,85</td><td>60,31</td><td>59,00</td><td>60,92</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <ul>
+            <li><strong>Senin paling ramai, Rabu paling sepi.</strong> Lima hari lainnya berkumpul rapat di 56,85–60,92 order per hari, sehingga pola harian <strong>relatif datar</strong> (rasio tersibuk terhadap tersepi 1,30).</li>
+            <li><strong>Tidak ada efek akhir pekan:</strong> 60,00 order per hari (akhir pekan) vs 59,12 (hari kerja). Minggu tidak sepi.</li>
+            <li>Tiap hari hanya punya 13 pengamatan, jadi selisih kecil antar hari belum tentu bermakna. Yang layak ditonjolkan hanya Senin dan Rabu.</li>
+        </ul>
+        <!-- Aktifkan setelah gambar tersedia:
+        <figure class="chart-fig"><img src="q5_hari.png" alt="Order per hari"><figcaption>Rata-rata order per hari kalender.</figcaption></figure>
+        -->
+
+        <h3><span class="q-badge">6</span> Kategori yang difokuskan</h3>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Kriteria</th><th>Asian</th><th>Italian</th><th>Mexican</th><th>American</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Item terjual</strong></td><td><strong>#1</strong></td><td>#2</td><td>#3</td><td>#4</td></tr>
+                    <tr><td><strong>Pendapatan</strong></td><td>#2</td><td><strong>#1</strong></td><td>#3</td><td>#4</td></tr>
+                    <tr><td><strong>Pendapatan per menu</strong></td><td><strong>#1</strong></td><td>#2</td><td>#4</td><td>#3</td></tr>
+                    <tr><td><strong>Kuadran menu</strong></td><td>5 Star, 2 Plowhorse, 1 Dog</td><td>6 Star, 3 Puzzle</td><td>2 Star, 3 Plowhorse, 1 Puzzle, 3 Dog</td><td>1 Star, 3 Plowhorse, 2 Dog</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>Kesimpulan:</strong> Asian menjadi fokus utama karena terlaris dan paling efisien per menu. Italian berperan sebagai penggerak nilai. Mexican paling lemah: pendapatan per menu terendah dan 4 dari 9 menunya berada di kuadran Dog atau Puzzle. Kalau tujuannya volume, jawabannya Asian. Kalau tujuannya pendapatan, jawabannya Italian.</p>
+        <!-- Aktifkan setelah gambar tersedia:
+        <figure class="chart-fig"><img src="q6_peta_menu.png" alt="Peta menu"><figcaption>Peta menu: item terjual vs harga, dengan empat kuadran.</figcaption></figure>
+        -->
+
+        <!-- 11. ANALISIS MENU -->
+        <h2 id="menu"><i data-feather="grid"></i> Analisis Menu (Menu Engineering)</h2>
+        <p>Setiap menu diklasifikasikan ke empat kuadran berdasarkan <strong>popularitas</strong> (item terjual) dan <strong>harga</strong>. Batas popularitas memakai aturan 70% dari rata-rata item terjual per menu (<strong>264,6 item</strong>), sedangkan batas harga memakai rata-rata harga tertimbang per item terjual (<strong>$13,16</strong>). Karena tidak ada data biaya, harga dipakai sebagai pengganti margin.</p>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Kuadran</th><th>Menu</th><th>% pendapatan</th><th>Contoh</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Star</strong><br>populer, harga tinggi</td><td>14</td><td><strong>60,08%</strong></td><td>Korean Beef Bowl, Cheeseburger, Tofu Pad Thai, Spaghetti &amp; Meatballs, Orange Chicken</td></tr>
+                    <tr><td><strong>Plowhorse</strong><br>populer, harga rendah</td><td>8</td><td>22,79%</td><td>Hamburger, Edamame, French Fries, Mac &amp; Cheese, Chips &amp; Salsa</td></tr>
+                    <tr><td><strong>Puzzle</strong><br>kurang populer, harga tinggi</td><td>4</td><td>9,15%</td><td>Fettuccine Alfredo, Shrimp Scampi, Steak Tacos, Cheese Lasagna</td></tr>
+                    <tr><td><strong>Dog</strong><br>kurang populer, harga rendah</td><td>6</td><td>7,98%</td><td>Hot Dog, Veggie Burger, Chips &amp; Guacamole, Cheese Quesadillas, Potstickers, Chicken Tacos</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note-box">
+            <p><strong>Catatan pembacaan:</strong> batas kuadran adalah konvensi, sehingga menu yang dekat batas (misalnya Meat Lasagna 273 item, Fettuccine Alfredo 249, Hot Dog 257) dibaca sebagai daftar pantauan. <strong>Chicken Tacos</strong> adalah satu-satunya menu yang jauh di bawah batas popularitas (123 vs 264,6). Veggie Burger dan Cheese Quesadillas mungkin berfungsi sebagai opsi vegetarian, jadi pertimbangkan itu sebelum menghapusnya.</p>
+        </div>
+
+        <!-- 12. REKOMENDASI -->
+        <h2 id="rekomendasi"><i data-feather="target"></i> Business Recommendations</h2>
+        <ul>
+            <li><strong>Fokus pada Kategori Asian:</strong> pertahankan kualitasnya sebagai penopang volume dan efisiensi, dan uji varian baru secara terbatas sambil memantau apakah menu baru mengambil penjualan menu Asian yang sudah ada. <i>Dasar:</i> terlaris (3.470 item) dan pendapatan per menu tertinggi ($5.840).</li>
+            <li><strong>Dorong Menu Italian yang Kurang Dikenal:</strong> promosikan Fettuccine Alfredo, Shrimp Scampi, dan Cheese Lasagna lewat promosi atau posisi menu, tanpa menambah menu baru. <i>Dasar:</i> kuadran Puzzle, harga tinggi tetapi jarang dipesan.</li>
+            <li><strong>Atur Staf dan Dapur Berdasarkan Jam:</strong> siapkan penuh pada 12:00–13:00 dan 17:00–18:00, dengan tambahan persiapan di hari Senin. <i>Dasar:</i> 45,8% order terjadi di empat jam puncak, sedangkan pola harian relatif datar.</li>
+            <li><strong>Uji Promo Ringan di Jam Lembah:</strong> coba promo di sekitar 15:00 dan hari Rabu, lalu ukur dampaknya. <i>Dasar:</i> 15:00 hanya 354 order, Rabu 52,3 order per hari.</li>
+            <li><strong>Buat Paket Makan Siang Kelompok:</strong> paket kelompok atau <i>family-size</i> berpeluang memperbesar kontribusi order besar. <i>Dasar:</i> order ≥5 item hanya 3,4% order tetapi 13% pendapatan, 91% terjadi saat makan siang.</li>
+            <li><strong>Evaluasi Menu Lemah:</strong> kaji Chicken Tacos dan Potstickers, serta rapikan kategori Mexican. <i>Dasar:</i> Chicken Tacos 123 item ($1.469,85), Potstickers 205 item ($1.845,00), Mexican pendapatan per menu terendah ($3.866).</li>
         </ul>
 
-        <h2><i data-feather="target"></i> Business Recommendations</h2>
+        <!-- 13. KETERBATASAN -->
+        <h2 id="keterbatasan"><i data-feather="alert-triangle"></i> Keterbatasan dan Langkah Lanjutan</h2>
         <ul>
-            <li><strong>Tambahkan Variasi Menu Asian:</strong> Mengingat tingginya permintaan, penambahan variasi atau inovasi menu pada kategori Asian sangat potensial.<span class="hide-cite"></span></li>
-            <li><strong>Optimalkan Pengaturan Staf:</strong> Maksimalkan jumlah dan kesiapan staf operasional secara spesifik pada hari Rabu, jam 12:00, dan jam 17:00.<span class="hide-cite"></span></li>
-            <li><strong>Berikan Promo Waktu Sepi:</strong> Pertimbangkan peluncuran diskon atau promo khusus pada hari Minggu maupun di sekitar pukul 15:00 untuk mendongkrak trafik pelanggan.<span class="hide-cite"></span></li>
-            <li><strong>Buat Paket Hemat (Group Package):</strong> Adanya pesanan senilai $162,55 menunjukkan peluang cross-selling yang besar melalui sistem menu paketan atau <i>family-size</i>.<span class="hide-cite"></span></li>
-            <li><strong>Evaluasi Menu Rendah Permintaan:</strong> Kaji ulang item seperti <i>Orange Chicken</i>; pertimbangkan penyesuaian harga, promosi, atau menggantinya dengan inovasi baru.<span class="hide-cite"></span></li>
+            <li>Data hanya mencakup <strong>3 bulan</strong>, sehingga pola musiman belum terlihat. Tiap hari dalam seminggu hanya punya 13 pengamatan.</li>
+            <li><strong>Tidak ada data biaya</strong>, sehingga pendapatan rendah belum berarti laba rendah.</li>
+            <li><strong>Dugaan pesanan kelompok</strong> belum bisa dipastikan karena data tidak mencatat jumlah orang atau jenis pelanggan.</li>
+            <li>137 baris tanpa <code>item_id</code> (1,12%) dibuang, sehingga 27 order tidak ikut dianalisis.</li>
+            <li>Kotak insight di dashboard berupa <strong>teks statis</strong> untuk seluruh periode, jadi tidak ikut berubah saat filter dipakai.</li>
+            <li><strong>Pengembangan berikutnya:</strong> <i>market basket analysis</i> untuk menemukan kombinasi menu yang sering dipesan bersama (terutama pada order besar), analisis tren mingguan jika tersedia data periode lebih panjang, dan analisis laba per menu jika data biaya bahan tersedia.</li>
         </ul>
 
-        <h2><i data-feather="folder"></i> Struktur Repository</h2>
+        <!-- 14. SKILLS / OUTCOMES -->
+        <h2 id="skills"><i data-feather="check-circle"></i> Project Outcomes dan Skills</h2>
+        <ul>
+            <li>Membersihkan dan menggabungkan dua tabel mentah (12.234 baris) menjadi satu tabel analisis (12.097 baris) dengan Pandas, disertai 24 pengecekan validasi yang seluruhnya lolos.</li>
+            <li>Menjawab enam pertanyaan bisnis dengan angka yang dihitung ulang secara independen, termasuk analisis menu (Star, Plowhorse, Puzzle, Dog) dan segmen order besar.</li>
+            <li>Membangun <strong>dashboard Looker Studio interaktif</strong> dengan filter tanggal, kategori, dan segmen order untuk memantau popularitas item, performa kategori, pola jam dan hari, serta peta menu.</li>
+        </ul>
+        <div class="tech-list">
+            <span>Data Cleaning</span><span>Feature Engineering</span><span>EDA</span><span>Validasi Data</span><span>Menu Engineering</span><span>Dashboarding</span><span>Business Insight</span>
+        </div>
+
+        <!-- 15. CARA MENJALANKAN ULANG -->
+        <h2 id="menjalankan"><i data-feather="play-circle"></i> Cara Menjalankan Ulang</h2>
+        <ul>
+            <li>Buka notebook di Google Colab, lalu unggah <code>order_details.csv</code> dan <code>menu_items.csv</code> dari folder <code>data/raw</code> ke panel <i>Files</i> (folder kerja <code>/content</code>).</li>
+            <li>Jalankan sel secara berurutan dari atas: load data, inspeksi, cleaning missing value, tipe data dan validasi, merge, feature engineering, EDA (enam pertanyaan), validasi akhir, export.</li>
+            <li>Hasilnya: <code>restaurant_clean.csv</code> (tabel bersih untuk dashboard) dan <code>orders_dropped_missing_item_id.csv</code> (baris yang dibuang).</li>
+            <li>Di Looker Studio, atur kolom ID sebagai <strong>Text</strong> (jangan dijumlahkan), lalu buat field hitungan seperti <code>COUNT_DISTINCT(order_id)</code> untuk total order dan <code>SUM(price)</code> untuk total pendapatan. Angka acuan: 5.343 order, $159.217,90, 12.097 item, dan $29,80 per order.</li>
+        </ul>
+
+        <!-- 16. STRUKTUR REPOSITORY -->
+        <h2 id="repo"><i data-feather="folder"></i> Struktur Repository</h2>
 <pre class="repo-structure">
 restaurant-order-analysis/
 │
 ├── data/
-│   ├── order_details.csv                # Dataset transaksi
-│   └── menu_items.csv                   # Dataset katalog menu
+│   ├── raw/
+│   │   ├── order_details.csv                   # Dataset transaksi
+│   │   └── menu_items.csv                      # Dataset katalog menu
+│   └── clean/
+│       ├── restaurant_clean.csv                # Tabel bersih untuk dashboard
+│       └── orders_dropped_missing_item_id.csv  # 137 baris yang dibuang
 ├── notebook/
-│   └── restaurant_order_analysis.ipynb  # Script Python (Merge & EDA)
+│   └── restaurant_order_analysis.ipynb         # Cleaning, merge, EDA, validasi
 ├── dashboard/
-│   └── dashboard_preview.png            # Pratinjau Dashboard
+│   └── dashboard_preview.png                   # Pratinjau dashboard
 └── README.md
 </pre>
+
+        <!-- 17. SUMBER DATA -->
+        <p style="font-size: 0.95rem;">Sumber data: dataset <i>Restaurant Orders</i> dari Maven Analytics, digunakan untuk keperluan pembelajaran.</p>
 
         <hr style="border-color: var(--border); margin: 60px 0 40px;">
 
         <div style="text-align: center;">
             <p style="margin-bottom: 24px;">Jelajahi Dashboard Interaktif atau diskusikan kodenya:</p>
             <div class="action-links" style="justify-content: center;">
-                <a href="https://lookerstudio.google.com/reporting/15ac54bb-998e-497b-89ec-cc2ce0e04f29" target="_blank" class="btn-primary" style="text-decoration: none; background-color: #1a73e8;">
+                <a href="https://datastudio.google.com/reporting/6445931a-19e1-49cf-8efc-f2d545cba36e" target="_blank" class="btn-primary" style="text-decoration: none; background-color: #1a73e8;">
                     <i data-feather="pie-chart"></i> Buka Looker Studio Dashboard
                 </a>
                 <a href="https://github.com/danangcorp/Analisis-Data-Pesanan-Restoran-Berdasarkan-Item-Waktu-dan-Pengeluaran-Konsumen" target="_blank" class="btn-outline-dark" style="text-decoration: none; border: 1px solid var(--border); padding: 14px 32px; border-radius: 100px; color: var(--text-dark); font-weight: 600; display: inline-flex; gap: 8px; align-items: center;">
