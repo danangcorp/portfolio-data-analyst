@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisis Penjualan Kafe End-to-End - Danang Arya</title>
+    <title>Analisis Penjualan Kafe 2023 - Danang Arya</title>
     
     <!-- Tipografi Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +20,7 @@
         /* =========================================
            CASE STUDY SPECIFIC STYLING
         ========================================= */
+        html { scroll-behavior: smooth; }
         body { background-color: var(--bg-main); }
         
         .back-btn { 
@@ -31,15 +32,28 @@
         }
         .back-btn:hover { background: var(--bg-slate); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
-        .case-header { padding: 140px 5% 60px; text-align: center; max-width: 900px; margin: 0 auto; }
+        .case-header { padding: 140px 5% 40px; text-align: center; max-width: 900px; margin: 0 auto; }
         .case-title { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; line-height: 1.15; letter-spacing: -1px; }
+        .case-lead { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 720px; margin: 0 auto; }
         
         .case-hero-img { 
-            width: 100%; max-width: 1000px; margin: 0 auto 80px; 
+            width: 100%; max-width: 1000px; margin: 0 auto 40px; 
             border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg); 
             border: 1px solid var(--border); background: var(--bg-slate);
         }
         .case-hero-img img { width: 100%; display: block; object-fit: cover; }
+
+        /* Daftar isi */
+        .toc { 
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; 
+            max-width: 900px; margin: 0 auto 60px; padding: 0 5%; 
+        }
+        .toc a { 
+            background: #fff; border: 1px solid var(--border); padding: 6px 14px; 
+            border-radius: 50px; font-size: 0.85rem; font-weight: 600; 
+            color: var(--text-dark); text-decoration: none; transition: var(--transition);
+        }
+        .toc a:hover { background: var(--bg-slate); }
 
         .case-body { 
             max-width: 760px; margin: 0 auto; padding: 0 5% 120px; 
@@ -51,6 +65,16 @@
             display: flex; align-items: center; gap: 12px;
         }
         .case-body h2 i { color: var(--accent); }
+        .case-body h3 { 
+            font-size: 1.3rem; margin: 44px 0 16px; color: var(--text-dark); 
+            display: flex; align-items: center; gap: 12px; 
+        }
+        .q-badge { 
+            width: 32px; height: 32px; border-radius: 50%; background: var(--bg-slate); 
+            border: 1px solid var(--border); color: var(--accent); font-size: 0.95rem; 
+            font-weight: 800; display: inline-flex; align-items: center; 
+            justify-content: center; flex: none; 
+        }
         .case-body p { margin-bottom: 24px; }
         
         .case-body ul { padding-left: 0; margin-bottom: 32px; list-style: none; }
@@ -72,12 +96,52 @@
 
         .repo-structure { 
             background: #0f172a; color: #e2e8f0; padding: 24px; 
-            border-radius: 16px; font-family: monospace; font-size: 0.95rem; 
+            border-radius: 16px; font-family: monospace; font-size: 0.9rem; 
             line-height: 1.6; overflow-x: auto; margin-bottom: 32px;
             box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
         }
+
+        .highlight-box {
+            background: #fffbeb; border: 1px solid #fde68a; padding: 20px 24px;
+            border-radius: 12px; color: #b45309; font-weight: 500; margin-bottom: 32px;
+            display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 0.95rem; justify-content: center; text-align: center;
+        }
+
+        .note-box {
+            background: var(--bg-slate); border: 1px solid var(--border); 
+            border-left: 4px solid var(--accent); padding: 16px 20px; 
+            border-radius: 12px; font-size: 1rem; line-height: 1.7; margin-bottom: 32px;
+        }
+        .note-box p { margin-bottom: 0; }
+
+        /* Kartu angka kunci */
+        .kpi-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+            gap: 16px; margin-bottom: 32px; 
+        }
+        .kpi { 
+            background: #fff; border: 1px solid var(--border); border-radius: 16px; 
+            padding: 18px 20px; box-shadow: var(--shadow-sm); 
+        }
+        .kpi .kpi-value { display: block; font-size: 1.5rem; font-weight: 800; color: var(--text-dark); line-height: 1.2; }
+        .kpi .kpi-label { font-size: 0.85rem; line-height: 1.4; color: var(--text-muted); }
+
+        /* Gambar halaman dashboard */
+        .chart-fig { 
+            margin: 0 0 32px; border: 1px solid var(--border); border-radius: 16px; 
+            overflow: hidden; background: var(--bg-slate); 
+        }
+        .chart-fig img { width: 100%; display: block; }
+        .chart-fig figcaption { padding: 10px 16px; font-size: 0.9rem; line-height: 1.5; }
         
         .action-links { display: flex; gap: 16px; margin-top: 40px; }
+        
+        /* Table Styling */
+        .table-wrap { overflow-x: auto; margin-bottom: 32px; }
+        .data-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 1rem; }
+        .table-wrap .data-table { margin-bottom: 0; font-size: 0.92rem; min-width: 480px; }
+        .data-table th, .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); text-align: left; }
+        .data-table th { background-color: var(--bg-slate); color: var(--text-dark); font-weight: 700; }
         
         @media (max-width: 768px) {
             .back-btn { top: 20px; left: 20px; padding: 8px 16px; font-size: 0.85rem; }
@@ -93,59 +157,290 @@
 
     <!-- BAGIAN HEADER -->
     <header class="case-header">
-        <span class="eyebrow">Data Analytics Project • 05/2026 - 06/2026</span>
-        <h1 class="case-title">Analisis Penjualan Kafe End-to-End</h1>
+        <span class="eyebrow">Data Analytics Project • 2026</span>
+        <h1 class="case-title">Analisis Penjualan Kafe 2023: Dashboard Power BI</h1>
+        <p class="case-lead">Mengapa revenue kafe stagnan, dan bagaimana bundling bisa menaikkannya? Analisis 10.000 transaksi dari pembersihan data hingga dashboard interaktif dan simulasi keputusan.</p>
         <div class="tech-list" style="justify-content: center; margin-top: 32px;">
-            <span>Python</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span><span>Power BI</span><span>DAX</span>
+            <span>Power BI</span><span>Power Query</span><span>DAX</span>
         </div>
     </header>
 
-    <!-- GAMBAR PREVIEW DASHBOARD KAFE -->
+    <!-- GAMBAR PREVIEW DASHBOARD (halaman Overview) -->
     <div class="case-hero-img container">
-        <img src="DashboardCoffe.png" alt="Preview Dashboard Penjualan Kafe">
+        <img src="DashboardCoffe.png" alt="Preview Dashboard Penjualan Kafe 2023, halaman Overview">
     </div>
+
+    <!-- DAFTAR ISI -->
+    <nav class="toc" aria-label="Daftar isi">
+        <a href="#ringkasan">Ringkasan</a>
+        <a href="#masalah">Masalah Bisnis</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#cleaning">Pembersihan Data</a>
+        <a href="#model">Model Data &amp; DAX</a>
+        <a href="#temuan">Temuan</a>
+        <a href="#rekomendasi">Rekomendasi</a>
+        <a href="#batasan">Batasan</a>
+        <a href="#skills">Skills</a>
+        <a href="#membuka">Membuka Proyek</a>
+    </nav>
 
     <!-- ISI KONTEN -->
     <main class="case-body">
-        
-        <h2><i data-feather="file-text"></i> Latar Belakang & Objektif</h2>
-        <!-- Revisi penghapusan kata CRISP-DM di sini -->
-        <p>Proyek ini bertujuan untuk menggali potensi data penjualan harian dari sebuah kedai kopi (kafe). Dengan memproses dan menganalisis <strong>2.999 data transaksi penjualan secara end-to-end</strong>, analisis ini mengevaluasi tren pendapatan, preferensi produk pelanggan, serta pola metode pembayaran untuk mengoptimalkan strategi bisnis operasional kafe.</p>
 
-        <h2><i data-feather="tool"></i> Metodologi & Eksekusi</h2>
+        <!-- RINGKASAN -->
+        <h2 id="ringkasan"><i data-feather="file-text"></i> Ringkasan Proyek</h2>
+        <p>Proyek ini menganalisis <strong>10.000 transaksi penjualan kafe selama 2023</strong> untuk menjawab satu pertanyaan bisnis: <strong>bagaimana menaikkan nilai belanja per transaksi tanpa menambah jumlah pelanggan?</strong></p>
+        <p>Data mentahnya sengaja "kotor" (banyak nilai kosong, <code>ERROR</code>, dan <code>UNKNOWN</code>), sehingga proyek ini mencakup seluruh alur: pembersihan data di Power Query, pemodelan data, analisis dengan DAX, dashboard interaktif empat halaman, dan rekomendasi keputusan.</p>
+
+        <div class="kpi-grid">
+            <div class="kpi"><span class="kpi-value">$89.042</span><span class="kpi-label">Total revenue</span></div>
+            <div class="kpi"><span class="kpi-value">9.974</span><span class="kpi-label">Transaksi dianalisis</span></div>
+            <div class="kpi"><span class="kpi-value">$8,93</span><span class="kpi-label">Rata-rata nilai transaksi (AOV)</span></div>
+            <div class="kpi"><span class="kpi-value">30.170</span><span class="kpi-label">Unit terjual</span></div>
+            <div class="kpi"><span class="kpi-value">99,74%</span><span class="kpi-label">Data mentah yang terpakai</span></div>
+        </div>
+
+        <p><strong>Temuan utama:</strong></p>
         <ul>
-            <li><strong>Data Cleaning & Exploratory Data Analysis (EDA):</strong> Memanfaatkan Library Python (Pandas, NumPy, Matplotlib, Seaborn) untuk membersihkan anomali data, mengidentifikasi korelasi antar variabel, dan memahami pola transaksi awal.</li>
-            <li><strong>Dashboard Integration:</strong> Menyusun hasil temuan menjadi dashboard interaktif menggunakan Power BI, yang dirancang khusus untuk memonitor KPI harian manajerial.</li>
-            <li><strong>DAX (Data Analysis Expressions):</strong> Pembuatan <i>measure</i> khusus untuk memformulasikan total revenue, rata-rata transaksi, dan agregasi data penjualan.</li>
+            <li>Revenue <strong>stagnan</strong> di kisaran $6,6K–$7,4K per bulan sepanjang 2023, tanpa tren naik.</li>
+            <li>Menu murah (Coffee, Tea, Cookie) menyumbang <strong>37% unit terjual tetapi hanya 19% revenue</strong>.</li>
+            <li>Lokasi, metode bayar, dan hari relatif merata (selisih terbesar sekitar 5%). Perbedaan nilai belanja lebih terkait komposisi menu daripada faktor-faktor tersebut.</li>
+            <li>Simulasi bundling: jika 20% pembeli menu murah beralih ke paket senilai $9, revenue naik sekitar <strong>$3.289 (3,7%)</strong>.</li>
         </ul>
 
-        <h2><i data-feather="zap"></i> Insight Utama Berbasis Metrik</h2>
-        <p>Setelah melakukan ekstraksi data mendalam, beberapa wawasan utama yang ditemukan adalah:</p>
+        <div class="highlight-box">
+            <strong><i data-feather="git-commit" style="display: inline-block; vertical-align: middle; margin-right: 8px;"></i> Alur Kerja:</strong><br>
+            Pembersihan Data (Power Query) → Pemodelan Data → Measure DAX → Dashboard 4 Halaman → Simulasi What-If → Rekomendasi
+        </div>
+
+        <!-- MASALAH BISNIS -->
+        <h2 id="masalah"><i data-feather="help-circle"></i> Masalah Bisnis</h2>
+        <p><strong>Pertanyaan utama:</strong> bagaimana menaikkan rata-rata nilai transaksi (AOV) dan revenue tanpa menambah jumlah pelanggan?</p>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>No.</th><th>Pertanyaan turunan</th><th>Dijawab di</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>Bagaimana kondisi revenue sepanjang 2023?</td><td>Overview</td></tr>
+                    <tr><td>2</td><td>Menu mana yang menyumbang revenue terbesar?</td><td>Analisis Menu</td></tr>
+                    <tr><td>3</td><td>Menu mana yang ramai terjual tetapi kontribusinya kecil?</td><td>Analisis Menu</td></tr>
+                    <tr><td>4</td><td>Apakah lokasi memengaruhi nilai belanja?</td><td>Segmentasi</td></tr>
+                    <tr><td>5</td><td>Apakah metode pembayaran memengaruhi nilai belanja?</td><td>Segmentasi</td></tr>
+                    <tr><td>6</td><td>Apakah hari tertentu berbeda?</td><td>Segmentasi</td></tr>
+                    <tr><td>7</td><td>Berapa potensi tambahan revenue dari bundling?</td><td>Simulasi Keputusan</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- DATASET -->
+        <h2 id="dataset"><i data-feather="database"></i> Deskripsi Dataset</h2>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Item</th><th>Keterangan</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Nama</strong></td><td>Dirty Cafe Sales</td></tr>
+                    <tr><td><strong>Ukuran</strong></td><td>10.000 baris, 8 kolom</td></tr>
+                    <tr><td><strong>Periode</strong></td><td>Januari – Desember 2023</td></tr>
+                    <tr><td><strong>Satuan</strong></td><td>Dolar AS (USD)</td></tr>
+                    <tr><td><strong>Sifat</strong></td><td>Data <strong>sintetis</strong> untuk latihan pembersihan data</td></tr>
+                    <tr><td><strong>Sumber</strong></td><td><a href="https://www.kaggle.com/datasets/ahmedmohamed2003/cafe-sales-dirty-data-for-cleaning-training" target="_blank" rel="noopener">Cafe Sales - Dirty Data for Cleaning Training</a> (Kaggle)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Kolom: <code>Transaction ID</code>, <code>Item</code>, <code>Quantity</code>, <code>Price Per Unit</code>, <code>Total Spent</code>, <code>Payment Method</code>, <code>Location</code>, <code>Transaction Date</code>.</p>
+        <div class="note-box">
+            <p><strong>Catatan:</strong> karena datanya sintetis, kesimpulan di proyek ini menunjukkan <strong>cara analisisnya</strong>, bukan fakta tentang kafe sungguhan.</p>
+        </div>
+
+        <!-- CLEANING -->
+        <h2 id="cleaning"><i data-feather="filter"></i> Proses Pembersihan Data</h2>
+        <p>Seluruh pembersihan dilakukan di <strong>Power Query</strong>. Prinsipnya: nilai yang hilang dipulihkan dari hubungan antar kolom, bukan ditebak.</p>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Masalah</th><th>Penanganan</th></tr></thead>
+                <tbody>
+                    <tr><td><code>ERROR</code> dan <code>UNKNOWN</code></td><td>Diubah menjadi kosong</td></tr>
+                    <tr><td>Harga satuan kosong</td><td>Dipulihkan dari tabel harga menu, atau dari Total ÷ Jumlah</td></tr>
+                    <tr><td>Jumlah kosong</td><td>Dipulihkan dari Total ÷ Harga</td></tr>
+                    <tr><td>Total belanja kosong</td><td>Dipulihkan dari Jumlah × Harga</td></tr>
+                    <tr><td>Nama menu kosong</td><td>Dipulihkan dari harga bila harganya unik (1 = Cookie, 1,5 = Tea, 2 = Coffee, 5 = Salad). Harga 3 dan 4 ambigu, sehingga diberi label "Tidak Diketahui"</td></tr>
+                    <tr><td>Lokasi dan metode bayar kosong</td><td>Diberi label "Tidak Diketahui" (tidak diisi dengan modus agar tidak menggelembungkan satu kategori)</td></tr>
+                    <tr><td>Tanggal kosong (± 460 baris)</td><td>Dibiarkan kosong. Baris tidak berurutan berdasarkan tanggal, jadi mengisinya dengan "baris terdekat" berarti mengarang tanggal</td></tr>
+                    <tr><td>Total tidak bisa dihitung</td><td>26 baris dibuang (0,26%): 23 tanpa total belanja yang bisa dihitung, 3 tanpa jumlah</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>Dasar pemulihan nilai:</strong> dari 8.544 baris yang lengkap, <code>Total Spent = Quantity × Price Per Unit</code> berlaku di <strong>semua</strong> baris tanpa pengecualian. Karena itu nilai yang hilang dihitung tepat dari dua kolom lainnya, bukan ditebak dengan median atau rata-rata, yang justru akan menciptakan penjualan palsu.</p>
+        <div class="note-box">
+            <p><strong>Catatan teknis:</strong> sel kosong di beberapa kolom ternyata berupa teks kosong (<code>""</code>), bukan <code>null</code>, sehingga rumus pemulihan harus memeriksa keduanya. Tipe data juga diatur dengan locale <strong>English (United States)</strong>, karena data memakai titik sebagai desimal sedangkan komputer berlokasi Indonesia memakai koma.</p>
+        </div>
+        <p>Hasil akhir: <strong>9.974 baris (99,74% data)</strong> siap dianalisis.</p>
+
+        <p><strong>Kolom turunan <code>Kategori</code></strong> ditentukan dari harga, bukan nama menu. Cara ini tetap valid untuk menu yang namanya ambigu, karena pasangan yang ambigu selalu berada di kategori yang sama.</p>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Kategori</th><th>Harga</th><th>Menu</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Pemicu</strong></td><td>≤ $2</td><td>Coffee, Tea, Cookie</td></tr>
+                    <tr><td><strong>Menengah</strong></td><td>$3</td><td>Juice, Cake</td></tr>
+                    <tr><td><strong>Andalan</strong></td><td>$4–$5</td><td>Sandwich, Smoothie, Salad</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- MODEL DATA & DAX -->
+        <h2 id="model"><i data-feather="layers"></i> Model Data &amp; Measure DAX</h2>
         <ul>
-            <li>Total pendapatan (revenue) keseluruhan mencapai <strong>$25,36K</strong> dari 2.999 total transaksi.</li>
-            <li><strong>Sandwich</strong> teridentifikasi sebagai produk paling menguntungkan dan penyumbang revenue terbesar, menghasilkan total <strong>$4,8K</strong>.</li>
-            <li><strong>Bulan Januari</strong> tercatat sebagai periode dengan lonjakan penjualan (sales peak) tertinggi sepanjang tahun operasional, sementara terdapat penurunan penjualan di musim tertentu.</li>
+            <li><strong><code>cafe_sales</code>:</strong> tabel fakta hasil pembersihan (9 kolom).</li>
+            <li><strong><code>Dim_Date</code>:</strong> tabel kalender 1 Januari sampai 31 Desember 2023, ditandai sebagai date table. Kolom <code>Bulan</code> dan <code>Hari</code> diurutkan menurut nomornya, supaya grafik tampil berurutan, bukan menurut abjad.</li>
+            <li><strong>Relasi:</strong> <code>Dim_Date[Date]</code> ke <code>cafe_sales[Transaction Date]</code>, satu-ke-banyak, arah filter tunggal.</li>
+            <li><strong>Simulasi What-If:</strong> dua parameter, yaitu <code>Konversi</code> (0 sampai 0,5) dan <code>Nilai Paket</code> ($5 sampai $15).</li>
+        </ul>
+<pre class="repo-structure">
+Total Revenue = SUM(cafe_sales[Total Spent])
+Total Transaksi = COUNTROWS(cafe_sales)
+AOV = DIVIDE([Total Revenue], [Total Transaksi])
+
+% Revenue =
+DIVIDE([Total Revenue], CALCULATE([Total Revenue], ALLSELECTED(cafe_sales)))
+
+Tambahan Revenue =
+[Transaksi Menu Pemicu] * [Konversi Value]
+    * ([Nilai Paket Value] - [AOV Menu Pemicu])
+
+Proyeksi Revenue = [Total Revenue] + [Tambahan Revenue]
+</pre>
+        <p><code>ALLSELECTED</code> dipakai (bukan <code>ALL</code>) pada <code>% Revenue</code> agar persentase tetap berjumlah 100% ketika slicer dipilih.</p>
+
+        <!-- TEMUAN -->
+        <h2 id="temuan"><i data-feather="zap"></i> Temuan per Halaman Dashboard</h2>
+
+        <h3><span class="q-badge">1</span> Overview</h3>
+        <ul>
+            <li>Total revenue <strong>$89.042</strong> dari <strong>9.974</strong> transaksi, AOV <strong>$8,93</strong>, dan <strong>30.170</strong> unit terjual.</li>
+            <li>Revenue bulanan berkisar $6.644 (Februari) sampai $7.353 (Juni), dengan rata-rata sekitar $7,07K. <strong>Tidak ada tren naik.</strong></li>
+            <li>Sekitar $4,17K revenue (4,7%) berasal dari transaksi tanpa tanggal tercatat. Hal ini diungkapkan di dashboard lewat kartu tersendiri.</li>
         </ul>
 
-        <h2><i data-feather="target"></i> Rekomendasi Strategis</h2>
-        <p>Berdasarkan insight yang ditemukan, saya menyusun rekomendasi bisnis yang <i>actionable</i> untuk meningkatkan pendapatan dan retensi pelanggan:</p>
+        <h3><span class="q-badge">2</span> Analisis Menu</h3>
+        <figure class="chart-fig">
+            <img src="cafe-analisis-menu.png" alt="Halaman Analisis Menu pada dashboard">
+            <figcaption>Halaman Analisis Menu: revenue per menu, unit vs revenue, dan porsi per kategori.</figcaption>
+        </figure>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Menu</th><th>Unit</th><th>Revenue</th><th>% Revenue</th><th>AOV</th></tr></thead>
+                <tbody>
+                    <tr><td>Salad</td><td>3.819</td><td>$19.095</td><td>21%</td><td>$15,04</td></tr>
+                    <tr><td>Sandwich</td><td>3.429</td><td>$13.716</td><td>15%</td><td>$12,17</td></tr>
+                    <tr><td>Smoothie</td><td>3.336</td><td>$13.344</td><td>15%</td><td>$12,20</td></tr>
+                    <tr><td>Juice</td><td>3.505</td><td>$10.515</td><td>12%</td><td>$9,00</td></tr>
+                    <tr><td>Cake</td><td>3.468</td><td>$10.404</td><td>12%</td><td>$9,14</td></tr>
+                    <tr><td>Coffee</td><td>3.904</td><td>$7.808</td><td>9%</td><td>$6,07</td></tr>
+                    <tr><td>Tea</td><td>3.650</td><td>$5.475</td><td>6%</td><td>$4,54</td></tr>
+                    <tr><td>Tidak Diketahui</td><td>1.461</td><td>$5.087</td><td>6%</td><td>$10,73</td></tr>
+                    <tr><td>Cookie</td><td>3.598</td><td>$3.598</td><td>4%</td><td>$2,97</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Kategori</th><th>% Unit</th><th>% Revenue</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Andalan</strong></td><td>37%</td><td>55%</td></tr>
+                    <tr><td><strong>Menengah</strong></td><td>26%</td><td>26%</td></tr>
+                    <tr><td><strong>Pemicu</strong></td><td>37%</td><td>19%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Coffee adalah menu terlaris (3.904 unit), tetapi AOV-nya hanya $6,07, jauh di bawah Salad ($15,04). Volume penjualan antar menu hampir sama, sedangkan hasil uangnya timpang. Karena kategori ditentukan dari harga, selisih antara porsi unit dan porsi revenue memang wajar. Temuan yang berguna adalah <strong>pembeli membeli menu murah dan mahal dalam jumlah yang hampir sama</strong>, sehingga ada ruang untuk mendorong pembelian menu bernilai lebih tinggi.</p>
+
+        <h3><span class="q-badge">3</span> Segmentasi</h3>
+        <figure class="chart-fig">
+            <img src="cafe-segmentasi.png" alt="Halaman Segmentasi pada dashboard">
+            <figcaption>Halaman Segmentasi: rata-rata belanja per lokasi, metode bayar, dan hari.</figcaption>
+        </figure>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Dimensi</th><th>Rentang AOV</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Lokasi</strong></td><td>$8,8 (Takeaway) sampai $9,0 (In-store)</td></tr>
+                    <tr><td><strong>Metode bayar</strong></td><td>$8,8 sampai $9,1 (Cash tertinggi)</td></tr>
+                    <tr><td><strong>Hari</strong></td><td>$8,7 (Rabu) sampai $9,2 (Selasa)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Selisih terbesar hanya sekitar 5%, sehingga lokasi, cara bayar, dan hari <strong>bukan faktor yang menonjol</strong> dalam nilai belanja. Perlu dicatat bahwa sekitar 40% transaksi tidak mencatat lokasi dan sekitar 31% tidak mencatat metode bayar, jadi perbandingannya dibaca dengan hati-hati.</p>
+
+        <h3><span class="q-badge">4</span> Simulasi Keputusan</h3>
+        <figure class="chart-fig">
+            <img src="cafe-simulasi.png" alt="Halaman Simulasi Keputusan pada dashboard">
+            <figcaption>Halaman Simulasi Keputusan: penggeser nilai paket dan konversi, serta revenue sekarang vs proyeksi.</figcaption>
+        </figure>
+        <p>Ada 3.703 transaksi menu Pemicu dengan rata-rata belanja $4,56. Tambahan revenue adalah <strong>selisih</strong> antara nilai paket dan belanja biasa mereka, bukan seluruh nilai paket. Pada konversi 20%:</p>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Nilai paket</th><th>Tambahan revenue</th><th>Kenaikan</th></tr></thead>
+                <tbody>
+                    <tr><td>$5</td><td>± $327</td><td>0,4%</td></tr>
+                    <tr><td>$7</td><td>± $1.808</td><td>2,0%</td></tr>
+                    <tr><td><strong>$9</strong></td><td><strong>± $3.289</strong></td><td><strong>3,7%</strong></td></tr>
+                    <tr><td>$12</td><td>± $5.511</td><td>6,2%</td></tr>
+                    <tr><td>$15</td><td>± $7.733</td><td>8,7%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Pelajarannya: nilai paket harus <strong>jauh</strong> di atas rata-rata belanja menu murah. Paket senilai $5 hampir tidak menambah apa-apa.</p>
+
+        <!-- REKOMENDASI -->
+        <h2 id="rekomendasi"><i data-feather="target"></i> Rekomendasi</h2>
         <ul>
-            <li><strong>Product Bundling:</strong> Membuat paket kombinasi menu yang melibatkan Sandwich dengan minuman (cross-selling) untuk mendongkrak rata-rata nilai pesanan (Average Order Value).</li>
-            <li><strong>Strategi Musim Sepi:</strong> Mengevaluasi performa penjualan pada bulan dengan performa rendah dan meluncurkan promosi spesifik (seperti diskon jam tertentu atau event) untuk menstabilkan arus kas.</li>
-            <li><strong>Peningkatan Layanan In-store:</strong> Menyesuaikan fasilitas in-store berdasarkan analisis preferensi tipe layanan (Dine-in vs Takeaway) guna meningkatkan <i>customer experience</i> secara keseluruhan.</li>
+            <li><strong>Buat paket bundling:</strong> pasangkan menu Pemicu dengan menu Menengah atau Andalan (misalnya Coffee + Cake) dengan nilai sekitar $9.</li>
+            <li><strong>Latih kasir menawarkan tambahan</strong> di titik bayar (upselling).</li>
+            <li><strong>Pertahankan menu murah sebagai pemicu kunjungan</strong>, dan dorong Salad, Sandwich, dan Smoothie sebagai menu andalan.</li>
+        </ul>
+
+        <!-- BATASAN -->
+        <h2 id="batasan"><i data-feather="alert-triangle"></i> Batasan dan Langkah Lanjutan</h2>
+        <ul>
+            <li><strong>Tidak ada data biaya.</strong> Hasilnya revenue, bukan profit. Paket belum tentu menguntungkan sebelum margin dihitung.</li>
+            <li><strong>Setiap baris hanya satu menu.</strong> Analisis keranjang belanja (menu yang dibeli bersamaan) tidak bisa dilakukan, sehingga pasangan paket perlu diuji.</li>
+            <li><strong>Konversi 20% adalah asumsi</strong>, bukan prediksi. Dalam praktik, makin mahal paketnya, makin sedikit yang mau, sehingga dua penggeser simulasi tidak sepenuhnya independen.</li>
+            <li><strong>Data tidak lengkap:</strong> sekitar 40% transaksi tidak mencatat lokasi, sekitar 31% tidak mencatat metode bayar, dan sekitar 4,7% revenue tidak punya tanggal.</li>
+            <li><strong>Data sintetis.</strong> Temuan menunjukkan metode analisis, bukan fakta tentang kafe nyata.</li>
+            <li><strong>Langkah lanjutan:</strong> uji coba A/B paket bundling di satu cabang atau periode lalu ukur AOV sebelum dan sesudahnya, hitung profit jika data biaya tersedia, dan analisis keranjang belanja jika data multi-item tersedia.</li>
+        </ul>
+
+        <!-- SKILLS -->
+        <h2 id="skills"><i data-feather="check-circle"></i> Skills yang Ditunjukkan</h2>
+        <ul>
+            <li>Membersihkan data kotor dengan memulihkan nilai dari hubungan antar kolom, dan mendokumentasikan keputusan untuk tiap jenis masalah.</li>
+            <li>Membangun model data (tabel fakta, tabel kalender, relasi) serta measure DAX untuk KPI, persentase kontribusi, dan simulasi what-if.</li>
+            <li>Merancang dashboard empat halaman yang tiap halamannya menjawab satu pertanyaan bisnis, dengan insight dan rekomendasi yang disertai batasan.</li>
+        </ul>
+        <div class="tech-list">
+            <span>Power Query</span><span>Data Cleaning</span><span>DAX</span><span>Data Modeling</span><span>What-If Analysis</span><span>Dashboard Design</span><span>Business Insight</span>
+        </div>
+
+        <!-- CARA MEMBUKA -->
+        <h2 id="membuka"><i data-feather="play-circle"></i> Cara Membuka Proyek</h2>
+        <ul>
+            <li>Buka <code>powerbi/cafe_sales_dashboard.pbix</code> dengan Power BI Desktop.</li>
+            <li>Jika Power BI meminta lokasi data, buka <strong>Transform data → Data source settings</strong>, lalu arahkan sumber ke <code>data/raw/dirty_cafe_sales.csv</code> di komputer Anda.</li>
+            <li>Klik <strong>Refresh</strong>.</li>
         </ul>
 
         <h2><i data-feather="folder"></i> Struktur Repository</h2>
 <pre class="repo-structure">
-├── data/
-│   └── cafe_sales_raw.csv             # Data mentah transaksi
-│   └── cafe_sales_clean.csv           # Dataset siap pakai
-├── notebook/
-│   └── cafe_sales_analysis.ipynb      # Proses EDA & Analisis (Python)
-├── dashboard/
-│   └── cafe_sales_dashboard.pbix      # File dashboard Power BI
-├── DashboardCoffe.png                 # Screenshot dashboard
-└── README.md
+cafe-sales-powerbi/
+├── README.md
+├── data/raw/dirty_cafe_sales.csv
+├── powerbi/cafe_sales_dashboard.pbix
+├── queries/power_query_cleaning.m
+├── dax/measures.dax
+├── docs/
+│   ├── screenshots/
+│   └── dashboard.pdf
+└── LICENSE
 </pre>
 
         <hr style="border-color: var(--border); margin: 60px 0 40px;">
